@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { DM_Sans, Inter } from "next/font/google";
+import localFont from "next/font/local";
 import Script from "next/script";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -8,16 +8,17 @@ import { Providers } from "@/components/providers";
 import { SITE_URL } from "@/lib/site";
 import "./globals.css";
 
-const inter = Inter({
-  subsets: ["latin"],
-  weight: ["400", "600", "700"],
+// Self-hosted (latin, variable weight) so builds never depend on fetching from Google Fonts.
+const inter = localFont({
+  src: "./fonts/inter-latin-wght.woff2",
+  weight: "400 700",
   variable: "--font-inter",
   display: "swap",
 });
 
-const dmSans = DM_Sans({
-  subsets: ["latin"],
-  weight: ["700", "800"],
+const dmSans = localFont({
+  src: "./fonts/dm-sans-latin-wght.woff2",
+  weight: "700 800",
   variable: "--font-dm-sans",
   display: "swap",
 });
